@@ -10,7 +10,7 @@
 double my_atod (char *str)
 {
     double result = 0.0;
-    int len = strlen (str);
+    int len = my_strlen (str);
     int dotPos = 0;
 
     for (int i = 0; i < len; i++) {

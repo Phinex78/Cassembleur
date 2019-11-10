@@ -1,0 +1,7 @@
+.clang-format
+.vscode
+bin
+obj
+src/NormEZ.rb
+NormEZ.rb
+test.avm

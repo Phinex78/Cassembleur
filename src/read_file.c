@@ -7,22 +7,26 @@
 
 #include "lib/header.h"
 
-void read_file (char *path_to_file)
+void read_file (char *path_to_file, Stack *stack)
 {
-    char buffer[1024 + 1];
-    int bytes_read = 0;
-    printf ("%s", buffer);
-    printf ("%i", bytes_read);
+    char *line = malloc (4096 + 1);
     int k = 0;
-    int fd;
-    fd = open (path_to_file, O_RDONLY);
-    if (fd == -1) {
-        printf ("%s", "Erreur de lecture du fichier");
+    char t = 0;
+    int line_number = 0;
+    int fd = open (path_to_file, O_RDONLY);
+    if (fd == -1)
+        write (STDERR, ERR_OPEN, my_strlen (ERR_OPEN));
+    for (int i = 0; i < 4097; i++) {
+        read (fd, &t, 1);
+        line[k++] = t;
+        if (t == '\n') {
+            line_number++;
+            line[k] = '\0';
+            parse_line (line, stack, line_number);
+            for (int j = 0; j < k; j++)
+                line[j] = '\0';
+            k = 0;
+        }
     }
-    for (int i = 0; i < 1025; i++) {
-        char t = 0;
-        bytes_read = read (fd, &t, 1);
-        buffer[k++] = t;
-        printf ("%c", t);
-    }
+    free (line);
 }

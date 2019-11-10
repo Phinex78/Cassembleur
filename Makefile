@@ -26,6 +26,7 @@ $(BINDIR)/$(TARGET): $(OBJECTS)
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+
 .PHONY: clean
 clean:
 	$(rm) $(OBJECTS)

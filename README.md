@@ -1,4 +1,5 @@
 # Groupe de goix_a
 
 Compile + Execution:
-make && cd bin && ./AbstractVM && cd ..
+Changer PATH TO FILE pour mettre le chemin vers le fichier a executer
+make && cd bin && ./AbstractVM PATH TO FILE && cd ..
