@@ -1,7 +1,8 @@
 .clang-format
 .vscode
-bin
-obj
+bin/*
+obj/*.o
 src/NormEZ.rb
 NormEZ.rb
 test.avm
+.DS_Store

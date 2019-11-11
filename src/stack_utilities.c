@@ -25,7 +25,7 @@ Stack *new_stack (void)
     return stack;
 }
 
-void push_value (Stack *stack, char *instruction, char *type, char *value)
+void push_value_stack (Stack *stack, char *instruction, char *type, char *value)
 {
     Element *newElement = malloc (sizeof (*newElement));
     if (newElement == NULL) {
@@ -69,8 +69,6 @@ void dump_stack (Stack *stack)
 
     while (element->instruction != NULL) {
         write (1, "=======Element=======", my_strlen ("=======Element======="));
-        write (1, "\n", 1);
-        write (1, element->instruction, my_strlen (element->instruction));
         write (1, "\n", 1);
         write (1, element->type, my_strlen (element->type));
         write (1, "\n", 1);

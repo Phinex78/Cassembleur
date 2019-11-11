@@ -11,8 +11,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <fcntl.h>
-#include <string.h>
 
 #define INSTRUCTIONS_WITH_VALUE_SIZE 2
 #define INSTRUCTIONS_WITH_VALUE                                                \
@@ -48,10 +46,11 @@
 #define BAD_INSTRUCTION "Erreur instruction invalide. "
 #define BAD_TYPE "Erreur type invalide. "
 #define BAD_VALUE "Erreur valeur invalide. "
-#define BAD_PRINT_TYPE "Le type en haut de la pile n'est pas un int8. \n"
 #define LINE "Ligne: "
-#define ASSERT_OK "La valeur en haut de pile vaut la valeur de assert.\n"
-#define ASSERT_KO "La valeur en haut de pile ne vaut pas la valeur de assert.\n"
+#define BAD_TOP_TYPE "Le type en haut de la pile n'est pas un int8. \n"
+#define TOP_INT8_ASCII "La valeur ASCII du int8 en haut de la pile est: "
+#define ASSERT_OK "La valeur en haut de pile est égale à la valeur de assert.\n"
+#define ASSERT_KO "La valeur haut de pile n'est pas égale à la valeur assert.\n"
 #define NOTHING_TO_SHOW "La pile est vide.\n"
 
 typedef enum { false, true } Bool;
@@ -80,10 +79,20 @@ char *my_strcpy (char *dest, const char *src);
 int my_strlen (const char *str);
 void my_putnbr (const int n);
 void my_putchar (const char c);
+char *my_itoa (int integer);
+char *my_dtoa (double num);
+double my_atod (char *str);
 Stack *new_stack (void);
-void push_value (Stack *stack, char *instruction, char *type, char *value);
+char *cast_to_int (char *value);
+void push_value_stack (Stack *stack, char *instruction, char *type,
+                       char *value);
 char *pop_element (Stack *stack);
 void dump_stack (Stack *stack);
+void add_stack (Stack *stack);
+void sub_stack (Stack *stack);
+void mul_stack (Stack *stack);
+void div_stack (Stack *stack);
+void mod_stack (Stack *stack);
 Bool is_char_condition_true (char c);
 Bool is_valid_type (char *type);
 Bool is_valid_value (char *type, char *valueStr);
@@ -92,23 +101,21 @@ Bool is_valid_instruction_with_value (char *instruction);
 Bool is_valid_int8 (double value);
 Bool is_valid_int16 (double value);
 Bool is_valid_int32 (double value);
+int type_number (char *type);
 void assert_value (Stack *stack, char *value);
 void manage_instruction (Stack *stack, char *instruction);
+void manage_math_operations (Stack *stack, char *instruction);
 void print_top_value (Stack *stack);
 void parse_line (char *line, Stack *stack, int line_number);
 char *get_instruction (char *line, int line_number);
-char *get_type (char *line);
-char *get_value (char *line);
-double my_atod (char *str);
+char *get_type (char *line, int line_number);
+char *get_value (char *type, char *line, int line_number);
+char *valid_type (char *type, char *valueStr, int line_number);
 void print_error (char *error, int line_number);
-char *my_atod_reverse (double dbl);
-int my_putstr(char *str);
-char *add(char *value1, char *value2);
-char *my_itoa(int integer);
-char *my_dtoa (double num);
-char *sub(char *value1, char *value2);
-char *divi(char *value1, char *value2);
-char *mod(char *value1, char *value2);
-char *mul(char *value1, char *value2);
+char *add (char *value1, char *value2);
+char *sub (char *value1, char *value2);
+char *divi (char *value1, char *value2);
+char *mod (char *value1, char *value2);
+char *mul (char *value1, char *value2);
 
 #endif

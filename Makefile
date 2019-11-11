@@ -1,11 +1,11 @@
 #/*
 #** RTP-DVC2, 2019
-#** Helicobyte
+#** AbstractVM
 #** File description:
-#**     Main library 
+#**     Makefile
 #*/
 
-TARGET   = AbstractVM
+TARGET   = abstractvm
 
 CC       = gcc
 

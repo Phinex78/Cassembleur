@@ -24,32 +24,32 @@ char *get_instruction (char *line, int line_number)
         print_error (BAD_INSTRUCTION, line_number);
         return BAD_INSTRUCTION;
     }
+    printf ("Free instruction: \n");
     free (instruction);
 };
 
-char *get_type (char *line)
+char *get_type (char *line, int line_number)
 {
     int i = 0;
     int k = 0;
     int posSpace = 0;
     char *type = malloc (sizeof (char *) * (my_strlen (line) + 1));
-
     while (line[i] != '(') {
-        if (posSpace == 0 && line[i] == '\0')
-            return "No type";
         if (line[i] == ' ') {
             posSpace = i;
-            for (int j = posSpace + 1; line[j] != '(' && line[j] != ' '; j++) {
+            for (int j = posSpace + 1; line[j] != '(' && line[j] != ' '; j++)
                 type[k++] = line[j];
-            }
         }
         i++;
     }
-    return is_valid_type (type) ? type : BAD_TYPE;
+    if (is_valid_type (type))
+        return type;
+    return BAD_TYPE;
+    print_error (BAD_TYPE, line_number);
     free (type);
 }
 
-char *get_value (char *line)
+char *get_value (char *type, char *line, int line_number)
 {
     int i = 0;
     int k = 0;
@@ -66,7 +66,7 @@ char *get_value (char *line)
         }
         i++;
     }
-    return valueStr;
+    return valid_type (type, valueStr, line_number);
     free (valueStr);
 }
 
@@ -76,17 +76,16 @@ void parse_line (char *line, Stack *stack, int line_number)
         return;
     char *instruction = get_instruction (line, line_number);
     if (is_valid_instruction_with_value (instruction)) {
-        char *type = get_type (line);
-        char *value = get_value (line);
+        char *type = get_type (line, line_number);
+        char *value = get_value (type, line, line_number);
         if (is_valid_value (type, value)) {
             if (my_strcmp (instruction, "assert") == 0)
                 assert_value (stack, value);
             else
-                push_value (stack, instruction, type, value);
+                push_value_stack (stack, instruction, type, value);
         } else {
             print_error (BAD_VALUE, line_number);
         }
-    } else {
-        manage_instruction (stack, instruction);
     }
+    manage_instruction (stack, instruction);
 }

@@ -29,7 +29,6 @@ Bool is_valid_instruction (char *instruction)
         if (my_strcmp (instruction, INSTRUCTIONS[i]) == 0)
             return true;
     }
-
     if (is_valid_instruction_with_value (instruction))
         return true;
 
