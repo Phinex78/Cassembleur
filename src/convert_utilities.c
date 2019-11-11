@@ -27,3 +27,27 @@ double my_atod (char *str)
 
     return result;
 }
+
+// char *my_atod_reverse (double dbl)
+// {
+//     char *result;
+//     my_putstr(dbl);
+//     return dbl;
+
+//     int len = my_strlen (dbl);
+//     int dotPos = 0;
+
+//     for (int i = 0; i < len; i++) {
+//         if (dbl[i] == '.') {
+//             dotPos = len - i - 1;
+//         } else {
+//             *result = *result * 10.0 + (dbl[i] - '0');
+//         }
+//     }
+
+//     while (dotPos--) {
+//         *result /= 10.0;
+//     }
+
+//     return *result;
+// }

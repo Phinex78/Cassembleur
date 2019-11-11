@@ -6,15 +6,25 @@
 */
 #include "lib/header.h"
 
-int main (int argc, char **argv)
+int main ()
 {
-    path_to_file_t file_to_read;
-    file_to_read.path_to_file = argv[1];
-    if (argc != 2) {
-        write (STDERR, ERR_FORMAT, my_strlen (ERR_FORMAT));
-        return 0;
-    }
+    // char *value1= "1";
+    // char *value2 = "4";
 
-    Stack *st = new_stack ();
-    read_file (file_to_read.path_to_file, st);
+    // char *result = add(value1, value2);
+    // printf("r : %s", result);
+
+    char buffer[33];
+
+	double value[] = { 11184810.3465, -25, 64, 127 };
+	double type[]  = { 16, 32, 8, };
+
+
+for (int i = 0; i < 4; i++)
+	{
+		printf("%s\n",
+			itoamoi((int)value[i], buffer, (int)type[i]));
+	}
+
+	return 0;
 }
