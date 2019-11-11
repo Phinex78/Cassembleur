@@ -24,7 +24,6 @@ char *get_instruction (char *line, int line_number)
         print_error (BAD_INSTRUCTION, line_number);
         return BAD_INSTRUCTION;
     }
-    printf ("Free instruction: \n");
     free (instruction);
 };
 

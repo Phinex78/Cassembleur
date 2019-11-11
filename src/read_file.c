@@ -9,14 +9,14 @@
 
 void read_file (char *path_to_file, Stack *stack)
 {
-    char *line = malloc (4096 + 1);
+    char *line = malloc (sizeof (char) * (1024 + 1));
     int k = 0;
     char t = 0;
     int line_number = 0;
     int fd = open (path_to_file, O_RDONLY);
     if (fd == -1)
         write (STDERR, ERR_OPEN, my_strlen (ERR_OPEN));
-    for (int i = 0; i < 4097; i++) {
+    for (int i = 0; i < 1025; i++) {
         read (fd, &t, 1);
         line[k++] = t;
         if (t == '\n') {
@@ -28,5 +28,6 @@ void read_file (char *path_to_file, Stack *stack)
             k = 0;
         }
     }
+    close (fd);
     free (line);
 }

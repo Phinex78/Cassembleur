@@ -17,4 +17,6 @@ int main (int argc, char **argv)
 
     Stack *st = new_stack ();
     read_file (file_to_read.path_to_file, st);
+    free (st);
+    return (0);
 }

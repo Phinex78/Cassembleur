@@ -65,11 +65,10 @@ char *my_dtoa (double num)
     for (; i >= 0; i--)
         str[j++] = tmp[i] + '0';
     str[j++] = '.';
-    num -= (int)num;
     for (i = 0; i < 3; i++) {
+        num -= (int)num;
         num *= 10.0;
         str[j++] = num + '0';
-        num -= (int)num;
     }
     return str;
     free (str);
