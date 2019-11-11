@@ -4,5 +4,4 @@ bin/*
 obj/*.o
 src/NormEZ.rb
 NormEZ.rb
-test.avm
 .DS_Store

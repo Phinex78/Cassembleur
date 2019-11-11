@@ -1,0 +1,33 @@
+; exemple.avm
+; push int32(-1)
+; push int32(2.15)
+; add;commentaire
+; push float(3.667)
+; mul
+; push double(4.668)
+; push int32(6) ;commentaire
+; pop
+; assert double(6.669)
+; push int8(-127)
+; dump
+; print
+; exit
+
+;dump
+;push int16(10)
+;push int8(24)
+;mod
+;dump
+;exit
+
+; exemple.avm
+push int32(42)
+push int32(33)
+add
+push float(44.55)
+mul
+push double(42.42)
+push int32(42)
+pop
+assert double(42.42)
+exit
