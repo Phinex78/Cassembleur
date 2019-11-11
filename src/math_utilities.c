@@ -6,17 +6,51 @@
 */
 #include "lib/header.h"
 
-// char *add(char *value1, char *value2) {
-  
-    
-//     double sum;
-//     int type=16;
-//     char buffer[1025];
+char *add(char *value1, char *value2) {
 
-//     sum = my_atod (value1) + my_atod(value2);
- 
-//     itoamoi((int)sum, buffer, (int)type);
+    double sum;
 
-    
-//     return sum;
-// }
+    sum = my_atod (value1) + my_atod(value2);
+
+    return my_dtoa(sum);
+}
+
+char *sub(char *value1, char *value2)
+{
+    double sum;
+
+    sum = my_atod (value1) - my_atod(value2);
+
+    return my_dtoa(sum);
+}
+
+char *mul(char *value1, char *value2)
+{
+    double sum;
+
+    sum = my_atod (value1) * my_atod(value2);
+
+    return my_dtoa(sum);
+}
+
+char *divi(char *value1, char *value2)
+{
+    double sum;
+    if (my_atod(value2) != 0 && my_atod(value2) > 0){
+    sum = my_atod (value1) % my_atod(value2);
+
+    return my_dtoa(sum);
+    }
+    return "can't div with 0";
+}
+
+char *mod(char *value1, char *value2)
+{
+    double sum;
+    if (my_atod(value2) != 0 && my_atod(value2) > 0){
+    sum = my_atod (value1) % my_atod(value2);
+
+    return my_dtoa(sum);
+    }
+    return "can't div with 0";
+}

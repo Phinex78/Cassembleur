@@ -27,27 +27,47 @@ double my_atod (char *str)
 
     return result;
 }
+char *my_itoa(int integer)
+{
+    int flag = 0;
+    char *str = malloc (sizeof (char) * (128 + 1));
+    int i = 126;
+    // if (integer > MAX_INT32 && integer < MIN_INT32)
+    //     return 0;
+    if (integer < 0) {
+        flag = 1;
+        integer = -integer;
+    }
+    while (integer != 0) {
+        str[i--] = (integer % 10) + '0';
+        integer /= 10;
+    }
+    if (flag)
+        str[i--] = '-';
 
-// char *my_atod_reverse (double dbl)
-// {
-//     char *result;
-//     my_putstr(dbl);
-//     return dbl;
+    return str + i + 1;
+}
 
-//     int len = my_strlen (dbl);
-//     int dotPos = 0;
-
-//     for (int i = 0; i < len; i++) {
-//         if (dbl[i] == '.') {
-//             dotPos = len - i - 1;
-//         } else {
-//             *result = *result * 10.0 + (dbl[i] - '0');
-//         }
-//     }
-
-//     while (dotPos--) {
-//         *result /= 10.0;
-//     }
-
-//     return *result;
-// }
+char *my_dtoa (double num)
+{
+    int i = 0;
+    int numI = (int)num;
+    char *str = malloc (sizeof (char) * (BUFSIZ + 1));
+    int tmp[BUFSIZ];
+    for (; numI / 10 != 0; i++) {
+        tmp[i] = numI % 10;
+        numI /= 10;
+    }
+    tmp[i] = numI;
+    int j = 0;
+    for (; i >= 0; i--)
+        str[j++] = tmp[i] + '0';
+    str[j++] = '.';
+    num -= (int)num;
+    for (i = 0; i < 6; i++) {
+        num *= 10;
+        str[j++] = (int)num + '0';
+        num -= (int)num;
+    }
+    return str;
+}

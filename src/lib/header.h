@@ -104,8 +104,11 @@ void print_error (char *error, int line_number);
 char *my_atod_reverse (double dbl);
 int my_putstr(char *str);
 char *add(char *value1, char *value2);
-char* itoamoi(int value, char* buffer, int base);
-char* reverse(char *buffer, int i, int j);
-void swap(char *x, char *y);
+char *my_itoa(int integer);
+char *my_dtoa (double num);
+char *sub(char *value1, char *value2);
+char *divi(char *value1, char *value2);
+char *mod(char *value1, char *value2);
+char *mul(char *value1, char *value2);
 
 #endif
