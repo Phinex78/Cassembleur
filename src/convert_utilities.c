@@ -34,7 +34,7 @@ char *my_itoa (int integer)
     int flag = 0;
     char *str_int = malloc (sizeof (char) * (128 + 1));
     int i = 126;
-    if (integer > MAX_INT32 && integer < MIN_INT32)
+    if (integer >= MAX_INT32 && integer <= MIN_INT32)
         return 0;
     if (integer < 0) {
         flag = 1;
