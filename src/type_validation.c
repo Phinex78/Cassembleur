@@ -46,7 +46,7 @@ Bool is_valid_int16 (double value)
 Bool is_valid_int32 (double value)
 {
     int tested_value = (int)value;
-    if (tested_value >= MIN_INT32 && tested_value <= MAX_INT32) {
+    if (tested_value > MIN_INT32 && tested_value < MAX_INT32) {
         return true;
     }
 
